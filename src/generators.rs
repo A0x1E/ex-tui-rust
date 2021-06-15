@@ -11,7 +11,9 @@ pub fn run() {
 
         let mut choice = String::new();
 
-        std::io::stdin().read_line(&mut choice).expect("Ошибка проверки строки");
+        std::io::stdin()
+            .read_line(&mut choice)
+            .expect("Ошибка проверки строки");
 
         let choice: u32 = match choice.trim().parse() {
             Ok(num) => num,
@@ -20,31 +22,41 @@ pub fn run() {
 
         match choice {
             1 => fibonacci(),
-            3 => break,
+            2 => break,
             _ => (),
         }
     }
 }
 
 fn fibonacci() {
-    eprint!("Введите исходное число (<=42): ");
+    loop {
+        eprint!("Введите исходное число (<=42): ");
 
-    let mut num = String::new();
+        let mut num = String::new();
 
-    std::io::stdin()
-        .read_line(&mut num)
-        .expect("Ошибка чтения строки");
+        std::io::stdin()
+            .read_line(&mut num)
+            .expect("Ошибка чтения значения");
 
-    
-    let num: usize = num
-        .trim()
-        .parse()
-        .expect("Введите целое число");
+        let num: u8 = match num.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
-    println!("Конечное число:                {}\n", fibonacci_algorithm(num))
+        match num {
+            1..=42 => {
+                println!(
+                    "Конечное число:                {}\n",
+                    fibonacci_algorithm(num)
+                );
+                break;
+            }
+            _ => println!("Пожалуйста, введите корректное число"),
+        }
+    }
 }
 
-fn fibonacci_algorithm(n: usize) -> usize {
+fn fibonacci_algorithm(n: u8) -> u32 {
     match n {
         0 => 1,
         1 => 1,
