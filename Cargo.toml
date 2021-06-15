@@ -4,10 +4,5 @@ version = "0.0.1"
 authors = ["Sergey Maslakov <s.a.maslakov@gmail.com>"]
 edition = "2018"
 
-[workspace]
-members = [
-    "guessing_game",
-    "converter"
-]
-
 [dependencies]
+rand = "0.8.3" # guessing game
