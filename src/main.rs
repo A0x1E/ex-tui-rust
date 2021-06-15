@@ -33,6 +33,7 @@ fn main() {
             1 => games::run(),
             2 => converters::run(),
             3 => generators::run(),
+            4 => break,
             _ => (),
         }
     }
